@@ -1,12 +1,15 @@
 package com.naufal.dependencyinjection
 
 import androidx.lifecycle.ViewModel
+import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 
-class MainViewModel(): ViewModel() {
-
-    private val mainRepositoryImpl = MainRepository(RemoteDataSource())
+@HiltViewModel
+class MainViewModel @Inject constructor(
+    private val mainRepository: MainRepository
+) : ViewModel() {
 
     fun doNetworkCall(): String {
-        return mainRepositoryImpl.doNetworkCall()
+        return mainRepository.doNetworkCall()
     }
 }
