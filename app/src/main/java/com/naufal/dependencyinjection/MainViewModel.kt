@@ -2,11 +2,9 @@ package com.naufal.dependencyinjection
 
 import androidx.lifecycle.ViewModel
 
-class MainViewModel(): ViewModel() {
-
-    private val mainRepositoryImpl = MainRepository(RemoteDataSource())
+class MainViewModel(private val mainRepository: MainRepository): ViewModel() {
 
     fun doNetworkCall(): String {
-        return mainRepositoryImpl.doNetworkCall()
+        return mainRepository.doNetworkCall()
     }
 }
